@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчёт по лабораторной работе №2 | HTTP и Git</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Courier New', monospace;
+            background: #e6e9ef;
+            color: #2c3e4e;
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            padding: 30px 35px;
+            border: 1px solid #d0d5dc;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #2c3e4e;
+            border-bottom: 2px solid #9aaebf;
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .subtitle {
+            color: #5a6e7c;
+            border-bottom: 1px solid #dce3e9;
+            padding-bottom: 16px;
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 36px 0 20px 0;
+            color: #2c3e4e;
+            background: #f0f2f5;
+            padding: 8px 12px;
+            border-left: 4px solid #7f8c8d;
+            border-radius: 0;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin: 28px 0 14px 0;
+            color: #3a5a6e;
+            padding-left: 6px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .file-list {
+            background: #f8f9fb;
+            border: 1px solid #e2e6ea;
+            border-radius: 4px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            font-size: 0.9rem;
+        }
+
+        .file-list ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .file-list li {
+            padding: 4px 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .code-block {
+            background: #2d3e4b;
+            color: #eef4ff;
+            padding: 14px 18px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 16px 0;
+            font-size: 0.85rem;
+            border-left: 3px solid #7f8c8d;
+        }
+
+        .screenshot-card {
+            background: #fff;
+            border: 1px solid #d4dae0;
+            border-radius: 4px;
+            margin: 28px 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .screenshot-header {
+            background: #f0f3f6;
+            padding: 10px 18px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #dce3e9;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #2c3e4e;
+        }
+
+        .task-number {
+            font-family: monospace;
+            background: #d1d9e0;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: normal;
+            color: #2c3e4e;
+        }
+
+        .request-info {
+            background: #f4f6f9;
+            padding: 10px 18px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #e2e6ea;
+            color: #2c3e4e;
+        }
+
+        .request-info code {
+            background: #e9ecef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .screenshot-img {
+            padding: 18px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .screenshot-img img {
+            max-width: 100%;
+            border: 1px solid #ccd3db;
+            border-radius: 2px;
+            background: #fefefe;
+        }
+
+        .caption {
+            padding: 10px 18px;
+            background: #fafcfd;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.85rem;
+            color: #4a6272;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        footer {
+            margin-top: 55px;
+            text-align: center;
+            padding-top: 18px;
+            border-top: 1px solid #dce3e9;
+            color: #6c8192;
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+
+        a {
+            color: #3a6b8c;
+            text-decoration: none;
+            border-bottom: 1px dotted #9aaebf;
+        }
+
+        a:hover {
+            color: #1f4b66;
+            border-bottom: 1px solid #3a6b8c;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e6ea;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .screenshot-header {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Отчёт по лабораторной работе №2</h1>
+    <div class="subtitle">
+        Программно-аппаратные средства Web<br>
+        Сладкомедов Ярослав, 23 
+    </div>
+
+    <!-- 1. Подготовка -->
+    <h2>1. Подготовка к выполнению работы</h2>
+    <div class="file-list">
+        <strong>Содержимое локальной папки laba2</strong><br>
+        В папке laba2 находятся все необходимые файлы: скриншоты, file.tar.gz, image.png, index.php, index.html и style.css.
+        <ul>
+            <li>Скриншот 01: Содержимое папки laba2</li>
+        </ul>
+    </div>
+
+    <h3>Инициализация Git и отправка на GitHub</h3>
+    <div class="code-block">
+        git init<br>
+        git add .<br>
+        git commit -m "first commit"<br>
+        git branch -M main<br>
+        git remote add origin git@github.com:Rusificator/web-hw2.git<br>
+        git push -u origin main
+    </div>
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Git push</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="02.png" alt="Отправка файлов на GitHub" onerror="this.src='https://placehold.co/800x300?text=02.png+Git+push'">
+        </div>
+        <div class="caption">Локальный репозиторий создан, все файлы добавлены, создан коммит. После связывания с удалённым репозиторием изменения успешно отправлены на GitHub.</div>
+    </div>
+
+    <h3>Клонирование репозитория на сервер</h3>
+    <div class="code-block">
+        git clone git@github.com:Rusificator/web-hw2.git<br>
+        mkdir -p ~/www/hw2<br>
+        cp -r ~/web-hw2/* ~/www/hw2/
+    </div>
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Клонирование на сервере</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="04.png" alt="Клонирование и копирование">
+        </div>
+        <div class="caption">Репозиторий склонирован в домашнюю директорию, создан каталог ~/www/hw2, файлы скопированы в веб-доступное место.</div>
+    </div>
+
+    <h3>Подготовка HTTP-запросов и настройка PuTTY</h3>
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Тексты запросов</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="05.png" alt="Запросы в блокноте">
+        </div>
+        <div class="caption">Все запросы для пунктов 1–7 были заранее набраны в текстовом редакторе для удобного копирования в PuTTY.</div>
+    </div>
+
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Настройки PuTTY</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="06.png" alt="Конфигурация PuTTY">
+        </div>
+        <div class="caption">Для отправки запросов используется PuTTY в режиме Raw (прямое TCP-соединение). Адрес: u82457.kubsu-dev.ru, порт 80.</div>
+    </div>
+
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Окно PuTTY ожидает запрос</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="07.png" alt="Пустое окно PuTTY">
+        </div>
+        <div class="caption">После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</div>
+    </div>
+
+    <!-- 2. HTTP запросы -->
+    <h2>2. Выполнение HTTP-запросов</h2>
+
+    <!-- Пункт 1 -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 1. Получить главную страницу методом GET в протоколе HTTP/1.0</span>
+            <span class="task-number">GET / HTTP/1.0</span>
+        </div>
+        <div class="request-info">
+            GET / HTTP/1.0<br>
+            Host: u82457.kubsu-dev.ru<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l1.png" alt="GET / HTTP/1.0">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 200 OK – запрос выполнен успешно.<br>
+            Заголовки: Server: Apache/2.4.58 (Ubuntu), Content-Length: 10671, Content-Type: text/html; charset=UTF-8.<br>
+            Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.
+        </div>
+    </div>
+
+    <!-- Пункт 2 -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 2. Получить внутреннюю страницу методом GET в протоколе HTTP/1.1</span>
+            <span class="task-number">GET /hw2/index.php</span>
+        </div>
+        <div class="request-info">
+            GET /hw2/index.php HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Connection: close<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l2.png" alt="GET /hw2/index.php">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 404 Not Found – задан самим скриптом.<br>
+            Заголовок Content-Type: text/html; charset=UTF-8.<br>
+            Тело ответа содержит вывод скрипта: Array ( ) Привет, мир! (пустой массив $_POST и строка).
+        </div>
+    </div>
+
+    <!-- Пункт 3 -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 3. Определить размер файла file.tar.gz, не скачивая его</span>
+            <span class="task-number">HEAD /hw2/file.tar.gz</span>
+        </div>
+        <div class="request-info">
+            HEAD /hw2/file.tar.gz HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Connection: close<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l3.png" alt="HEAD file.tar.gz">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 200 OK – файл существует.<br>
+            Заголовок Content-Length: 11335 – размер файла в байтах.<br>
+            Тип файла: Content-Type: application/x-gzip.
+        </div>
+    </div>
+
+    <!-- Пункт 4 -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 4. Определить медиатип ресурса /image.png</span>
+            <span class="task-number">HEAD /hw2/image.png</span>
+        </div>
+        <div class="request-info">
+            HEAD /hw2/image.png HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Connection: close<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l4.png" alt="HEAD image.png">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 200 OK.<br>
+            Заголовок Content-Type: image/png – медиатип PNG.<br>
+            Размер: Content-Length: 10506 байт.
+        </div>
+    </div>
+
+    <!-- Пункт 5 POST -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 5. Отправить комментарий на сервер по адресу /index.php (POST)</span>
+            <span class="task-number">POST /hw2/index.php</span>
+        </div>
+        <div class="request-info">
+            POST /hw2/index.php HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Content-Type: application/x-www-form-urlencoded<br>
+            Content-Length: 12<br>
+            Connection: close<br>
+            <br>
+            comment=Hello
+        </div>
+        <div class="screenshot-img">
+            <img src="l5.png" alt="POST комментарий">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
+            Заголовок Content-Type: text/html; charset=UTF-8.<br>
+            Тело ответа: Array ( [comment] => Hello ) Привет, мир! – значение поля comment успешно передано.
+        </div>
+    </div>
+
+    <!-- Пункт 6 Range -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 6. Получить первые 100 байт файла /file.tar.gz</span>
+            <span class="task-number">Range: bytes=0-99</span>
+        </div>
+        <div class="request-info">
+            GET /hw2/file.tar.gz HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Range: bytes=0-99<br>
+            Connection: close<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l6.png" alt="GET с Range">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 206 Partial Content – частичное содержимое.<br>
+            Заголовок Content-Range: bytes 0-99/11335.<br>
+            Content-Length: 100 – длина переданных данных.<br>
+            Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).
+        </div>
+    </div>
+
+    <!-- Пункт 7 -->
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>Пункт 7. Определить кодировку ресурса /index.php</span>
+            <span class="task-number">HEAD /hw2/index.php</span>
+        </div>
+        <div class="request-info">
+            HEAD /hw2/index.php HTTP/1.1<br>
+            Host: u82457.kubsu-dev.ru<br>
+            Connection: close<br>
+            <br>
+        </div>
+        <div class="screenshot-img">
+            <img src="l7.png" alt="HEAD index.php charset">
+        </div>
+        <div class="caption">
+            Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
+            Заголовок Content-Type: text/html; charset=UTF-8 – кодировка UTF-8 указана явно.
+        </div>
+    </div>
+
+    <!-- 3. Обновление -->
+    <h2>3. Обновление репозитория и сервера после выполнения всех пунктов</h2>
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>git add, commit, push</span>
+            <span class="task-number">Скриншот f1</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="f1.png" alt="git add commit push">
+        </div>
+        <div class="caption">После выполнения всех запросов и создания дополнительных скриншотов (02–07, l1-l7, f1, f2 и др.) они были добавлены в локальный репозиторий, закоммичены и отправлены на GitHub.</div>
+    </div>
+
+    <div class="screenshot-card">
+        <div class="screenshot-header">
+            <span>git pull и копирование на сервере</span>
+            <span class="task-number">Скриншот f2</span>
+        </div>
+        <div class="screenshot-img">
+            <img src="f2.png" alt="git pull и копирование">
+        </div>
+        <div class="caption">На сервере выполнен git pull в папке с репозиторием. После получения обновлений файлы скопированы в каталог ~/www/hw2.</div>
+    </div>
+
+    <!-- 4. Ссылки для сдачи -->
+    <h2>4. Ссылки для сдачи работы (Moodle)</h2>
+    <div class="file-list">
+        <p><strong>Веб-страница с отчётом:</strong> <a href="http://u82457.kubsu-dev.ru/hw2/index.html" target="_blank">http://u82457.kubsu-dev.ru/hw2/index.html</a></p>
+        <p><strong>Репозиторий Git (GitHub):</strong> <a href="https://github.com/Rusificator/web-hw2" target="_blank">https://github.com/Rusificator/web-hw2</a></p>
+        <p>Все скриншоты соответствуют требованиям: видны заголовки запроса и ответа, коды состояния (200, 206, 404), Content-Length, Content-Type, Range и другие заголовки.</p>
+    </div>
+</div>
+</body>
+</html>
