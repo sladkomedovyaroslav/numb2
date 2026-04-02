@@ -28,6 +28,35 @@
             padding: 2rem 2rem 2rem 2rem;
         }
 
+        /* Стиль для блока с информацией об авторе */
+        .author-info {
+            background: #f8fafc;
+            border-left: 4px solid #9aaebf;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1.8rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #2c4b6c;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: #1e2f3e;
+        }
+
+        .author-login {
+            font-family: monospace;
+            background: #eef2f7;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
         h1 {
             font-size: 1.9rem;
             font-weight: 600;
@@ -100,12 +129,20 @@
             padding: 0.7rem 1.2rem;
             margin: 1rem 0;
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
             flex-wrap: wrap;
             border: 1px solid #e9edf2;
             font-size: 0.85rem;
             color: #2c4b6c;
+        }
+
+        .screenshot-line img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
         }
 
         .badge-light {
@@ -116,6 +153,7 @@
             padding: 0.2rem 0.7rem;
             border-radius: 30px;
             font-family: monospace;
+            display: inline-block;
         }
 
         hr {
@@ -136,21 +174,30 @@
             h1 {
                 font-size: 1.6rem;
             }
+            .author-info {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Отчёт по лабораторной работе №2</h1>
+    <!-- Блок с информацией об авторе -->
+    <div class="author-info">
+        <span class="author-name">Выполнил: Сладкомедов Ярослав, 23 ПМИ</span>
+        <span class="author-login">Логин: u82683</span>
+    </div>
 
+    <h1>Отчёт по лабораторной работе №2</h1>
 
     <!-- Подготовка к выполнению -->
     <h2>Подготовка к выполнению работы</h2>
     <div class="card">
         <p><strong>Содержимое локальной папки</strong><br>
-        В папке laba2 находятся все необходимые файлы: скриншоты, file.tar.gz, image.png, index.php, index.html.</p>
+        В директории находятся все необходимые файлы: скриншоты, file.tar.gz, image.png, index.php, index.html.</p>
         <div class="screenshot-line">
-            <span class="badge-light">1.png</span> Содержимое папки
+            <img src="1.png" alt="Содержимое папки laba2">
         </div>
     </div>
 
@@ -166,7 +213,7 @@
     </div>
     <p>Локальный репозиторий создан, все файлы добавлены, создан коммит. После связывания с удалённым репозиторием изменения успешно отправлены на GitHub.</p>
     <div class="screenshot-line">
-        <span class="badge-light">2.png</span> Отправка файлов на GitHub
+        <img src="2.png" alt="Отправка файлов на GitHub">
     </div>
 
     <!-- Клонирование репозитория на сервер -->
@@ -176,19 +223,18 @@
     </div>
     <p>Репозиторий склонирован в домашнюю директорию, создан каталог ~/www/numb2, файлы скопированы в веб-доступное место.</p>
     <div class="screenshot-line">
-        <span class="badge-light">3.png</span> Клонирование и копирование
+        <img src="3.png" alt="Клонирование репозитория на сервер">
     </div>
 
     <!-- Настройка PuTTY для подключения -->
     <h2>Настройка PuTTY для подключения</h2>
     <p>Для отправки запросов используется PuTTY в режиме Raw (прямое TCP-соединение). Адрес: u82683.kubsu-dev.ru, порт 80.</p>
-    <p><strong>Настройки PuTTY</strong></p>
     <div class="screenshot-line">
-        <span class="badge-light">4.png</span> Конфигурация PuTTY
+        <img src="4.png" alt="Конфигурация PuTTY">
     </div>
-    После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</p>
+    <p>После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</p>
     <div class="screenshot-line">
-        <span class="badge-light">5.png</span> Окно PuTTY ожидает запрос
+        <img src="5.png" alt="Окно PuTTY ожидает запрос">
     </div>
 
     <!-- Пункт 1 -->
@@ -202,7 +248,7 @@
     Заголовки: Server: Apache/2.4.58 (Ubuntu), Content-Length: 10671, Content-Type: text/html; charset=UTF-8.<br>
     Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.</p>
     <div class="screenshot-line">
-        <span class="badge-light">6.png</span> GET / HTTP/1.0
+        <img src="6.png" alt="GET запрос главной страницы HTTP/1.0">
     </div>
 
     <!-- Пункт 2 -->
@@ -219,7 +265,7 @@
     Тело ответа содержит вывод скрипта: Array ( ) Привет, мир! (пустой массив $_POST и строка).<br>
     Примечание: статус 404 не мешает получению содержимого – задание требует сам факт ответа и его анализ.</p>
     <div class="screenshot-line">
-        <span class="badge-light">7.png</span> GET /numb2/index.php
+        <img src="7.png" alt="GET запрос внутренней страницы">
     </div>
 
     <!-- Пункт 3 -->
@@ -235,7 +281,7 @@
     Заголовок Content-Length: 11335 – размер файла в байтах.<br>
     Тип файла: Content-Type: application/x-gzip.</p>
     <div class="screenshot-line">
-        <span class="badge-light">8.png</span> HEAD /numb2/file.tar.gz
+        <img src="8.png" alt="HEAD запрос для определения размера file.tar.gz">
     </div>
 
     <!-- Пункт 4 -->
@@ -251,7 +297,7 @@
     Заголовок Content-Type: image/png – медиатип PNG.<br>
     Размер: Content-Length: 10506 байт.</p>
     <div class="screenshot-line">
-        <span class="badge-light">9.png</span> HEAD /numb2/image.png
+        <img src="9.png" alt="HEAD запрос для определения медиатипа image.png">
     </div>
 
     <!-- Пункт 5 -->
@@ -271,7 +317,7 @@
     Заголовок Content-Type: text/html; charset=UTF-8.<br>
     Тело ответа: Array ( [comment] => Hell ) Привет, мир! – значение поля comment частично отобразилось (обрезано из-за особенностей вывода).</p>
     <div class="screenshot-line">
-        <span class="badge-light">10.png</span> POST /numb2/index.php
+        <img src="10.png" alt="POST запрос с комментарием">
     </div>
 
     <!-- Пункт 6 -->
@@ -289,7 +335,7 @@
     Content-Length: 100 – длина переданных данных.<br>
     Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).</p>
     <div class="screenshot-line">
-        <span class="badge-light">11.png</span> GET с Range
+        <img src="11.png" alt="GET запрос с Range для первых 100 байт">
     </div>
 
     <!-- Пункт 7 -->
@@ -304,12 +350,12 @@
     Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
     Заголовок Content-Type: text/html; charset=UTF-8 – кодировка UTF-8 указана явно.</p>
     <div class="screenshot-line">
-        <span class="badge-light">12.png</span> HEAD /numb2/index.php
+        <img src="12.png" alt="HEAD запрос для определения кодировки">
     </div>
 
     <hr>
     <div style="font-size: 0.75rem; color: #6b7c93; text-align: center; padding-top: 1rem;">
-
+        Сладкомедов, 23 ПМИ
     </div>
 </div>
 </body>
