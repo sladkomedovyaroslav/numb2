@@ -28,7 +28,6 @@
             padding: 2rem 2rem 2rem 2rem;
         }
 
-        /* Стиль для блока с информацией об авторе */
         .author-info {
             background: #f8fafc;
             border-left: 4px solid #9aaebf;
@@ -197,7 +196,7 @@
         <p><strong>Содержимое локальной папки</strong><br>
         В директории находятся все необходимые файлы: скриншоты, file.tar.gz, image.png, index.php, index.html.</p>
         <div class="screenshot-line">
-            <img src="1.png" alt="Содержимое папки laba2">
+            <img src="screenshots/1.png" alt="Содержимое папки laba2">
         </div>
     </div>
 
@@ -213,7 +212,7 @@
     </div>
     <p>Локальный репозиторий создан, все файлы добавлены, создан коммит. После связывания с удалённым репозиторием изменения успешно отправлены на GitHub.</p>
     <div class="screenshot-line">
-        <img src="2.png" alt="Отправка файлов на GitHub">
+        <img src="screenshots/2.png" alt="Отправка файлов на GitHub">
     </div>
 
     <!-- Клонирование репозитория на сервер -->
@@ -223,18 +222,18 @@
     </div>
     <p>Репозиторий склонирован в домашнюю директорию, создан каталог ~/www/numb2, файлы скопированы в веб-доступное место.</p>
     <div class="screenshot-line">
-        <img src="3.png" alt="Клонирование репозитория на сервер">
+        <img src="screenshots/3.png" alt="Клонирование репозитория на сервер">
     </div>
 
     <!-- Настройка PuTTY для подключения -->
     <h2>Настройка PuTTY для подключения</h2>
     <p>Для отправки запросов используется PuTTY в режиме Raw (прямое TCP-соединение). Адрес: u82683.kubsu-dev.ru, порт 80.</p>
     <div class="screenshot-line">
-        <img src="4.png" alt="Конфигурация PuTTY">
+        <img src="screenshots/4.png" alt="Конфигурация PuTTY">
     </div>
     <p>После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</p>
     <div class="screenshot-line">
-        <img src="5.png" alt="Окно PuTTY ожидает запрос">
+        <img src="screenshots/5.png" alt="Окно PuTTY ожидает запрос">
     </div>
 
     <!-- Пункт 1 -->
@@ -248,7 +247,7 @@
     Заголовки: Server: Apache/2.4.58 (Ubuntu), Content-Length: 10671, Content-Type: text/html; charset=UTF-8.<br>
     Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.</p>
     <div class="screenshot-line">
-        <img src="6.png" alt="GET запрос главной страницы HTTP/1.0">
+        <img src="screenshots/6.png" alt="GET запрос главной страницы HTTP/1.0">
     </div>
 
     <!-- Пункт 2 -->
@@ -265,7 +264,7 @@
     Тело ответа содержит вывод скрипта: Array ( ) Привет, мир! (пустой массив $_POST и строка).<br>
     Примечание: статус 404 не мешает получению содержимого – задание требует сам факт ответа и его анализ.</p>
     <div class="screenshot-line">
-        <img src="7.png" alt="GET запрос внутренней страницы">
+        <img src="screenshots/7.png" alt="GET запрос внутренней страницы">
     </div>
 
     <!-- Пункт 3 -->
@@ -281,7 +280,7 @@
     Заголовок Content-Length: 11335 – размер файла в байтах.<br>
     Тип файла: Content-Type: application/x-gzip.</p>
     <div class="screenshot-line">
-        <img src="8.png" alt="HEAD запрос для определения размера file.tar.gz">
+        <img src="screenshots/8.png" alt="HEAD запрос для определения размера file.tar.gz">
     </div>
 
     <!-- Пункт 4 -->
@@ -297,7 +296,7 @@
     Заголовок Content-Type: image/png – медиатип PNG.<br>
     Размер: Content-Length: 10506 байт.</p>
     <div class="screenshot-line">
-        <img src="9.png" alt="HEAD запрос для определения медиатипа image.png">
+        <img src="screenshots/9.png" alt="HEAD запрос для определения медиатипа image.png">
     </div>
 
     <!-- Пункт 5 -->
@@ -317,7 +316,7 @@
     Заголовок Content-Type: text/html; charset=UTF-8.<br>
     Тело ответа: Array ( [comment] => Hell ) Привет, мир! – значение поля comment частично отобразилось (обрезано из-за особенностей вывода).</p>
     <div class="screenshot-line">
-        <img src="10.png" alt="POST запрос с комментарием">
+        <img src="screenshots/10.png" alt="POST запрос с комментарием">
     </div>
 
     <!-- Пункт 6 -->
@@ -335,7 +334,7 @@
     Content-Length: 100 – длина переданных данных.<br>
     Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).</p>
     <div class="screenshot-line">
-        <img src="11.png" alt="GET запрос с Range для первых 100 байт">
+        <img src="screenshots/11.png" alt="GET запрос с Range для первых 100 байт">
     </div>
 
     <!-- Пункт 7 -->
@@ -350,7 +349,7 @@
     Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
     Заголовок Content-Type: text/html; charset=UTF-8 – кодировка UTF-8 указана явно.</p>
     <div class="screenshot-line">
-        <img src="12.png" alt="HEAD запрос для определения кодировки">
+        <img src="screenshots/12.png" alt="HEAD запрос для определения кодировки">
     </div>
 
     <hr>
